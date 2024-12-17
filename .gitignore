@@ -1,0 +1,9 @@
+*.o
+*.d
+*.ox
+*.dx
+release
+tags
+GPATH
+GRTAGS
+GTAGS
