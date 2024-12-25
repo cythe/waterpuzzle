@@ -35,7 +35,7 @@ int stack_pop(struct _stack *me, struct _from_to *d)
 {
     if (is_stack_empty(me))
     {
-	printf("stack is full\n");
+	printf("stack is empty\n");
 	return -1;
     }
 
