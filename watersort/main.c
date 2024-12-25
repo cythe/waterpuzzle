@@ -21,27 +21,7 @@ void add_step(struct _steps *s, int src, int dest)
     s->cnt++;
 }
 
-int find_all(struct _tube arr[], int tube_cnt, struct _steps *s)
-{
-    int cnt = 0;
-    memset(s, 0, sizeof(struct _steps));
-    for (int i = 0; i < tube_cnt; i++)
-    {
-	for (int j = 0; j < tube_cnt; j++)
-	{
-	    if (j == i)
-		continue;
-	    if (can_pour(&arr[i], &arr[j])) {
-		/* add this step to list */
-		add_step(s, i, j);
-		cnt ++ ;
-	    }
-	}
-    }
-
-    return cnt;
-}
-
+#if 0
 int find_next_layer(struct _tube tubes[], int tube_cnt, struct _steps *n)
 {
     int cnt = 0;
@@ -49,6 +29,7 @@ int find_next_layer(struct _tube tubes[], int tube_cnt, struct _steps *n)
     struct _steps next; 
     memset(&next, 0, sizeof(struct _steps));
 
+    /* 对每种情况进行模拟 */
     for (int i = 0; i < n->cnt; i++)
     {
 	printresults(tubes, tube_cnt, -1, -1, -1);
@@ -85,7 +66,6 @@ int find_next_layer(struct _tube tubes[], int tube_cnt, struct _steps *n)
     return -1;
 }
 
-#if 0
 /* 递归实现 */
 int sort(struct _tube arr[], int tube_cnt)
 {
@@ -113,6 +93,36 @@ int sort(struct _tube arr[], int tube_cnt)
 	printf("failed.\n");
 }
 #else
+/*----------------------------------------------------------------------*
+ * @brief : 找到一个layer的所有可能情况
+ *
+ * @param : arr[]: 所有试管
+ * @param : tube_cnt: 试管数量
+ * @param : s: 每种情况应该如何执行
+ *
+ * @ret   : 有多少种可能的情况, 如果是0表示无法执行了. layer为终态.
+ * ----------------------------------------------------------------------*/
+int find_all(struct _tube arr[], int tube_cnt, struct _steps *s)
+{
+    int cnt = 0;
+    memset(s, 0, sizeof(struct _steps));
+    for (int i = 0; i < tube_cnt; i++)
+    {
+	for (int j = 0; j < tube_cnt; j++)
+	{
+	    if (j == i)
+		continue;
+	    if (can_pour(&arr[i], &arr[j])) {
+		/* add this step to list */
+		add_step(s, i, j);
+		cnt ++ ;
+	    }
+	}
+    }
+
+    return cnt;
+}
+
 /* 通过栈和回溯实现 */
 void sort(struct _tube arr[], int tube_cnt)
 {
@@ -167,7 +177,7 @@ revert:
 	npour(&arr[tp.dest], &arr[tp.src], tp.cnt);
 	printresults(arr, tube_cnt, tp.src, tp.dest, tp.cnt);
     }
-    //stack_print(&stack);
+    // stack_print(&stack);
 }
 #endif
 
