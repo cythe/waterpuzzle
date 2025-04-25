@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include "tube.h"
 #include "stack.h"
-#include "color.h"
+//#include "color.h"
 #include "load.h"
 
 void printsteps(struct _steps *s)
@@ -127,7 +127,7 @@ int find_all(struct _tube arr[], int tube_cnt, struct _steps *s)
 void sort(struct _tube arr[], int tube_cnt)
 {
     struct _steps curr[MAX_STEP];
-    memset(curr, 0, sizeof(MAX_STEP * sizeof(struct _steps)));
+    memset(curr, 0, MAX_STEP * sizeof(struct _steps));
     struct _from_to tp;
     int ret;
     int p_curr;
