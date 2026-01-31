@@ -8,6 +8,14 @@
 
 ## 使用方法
 
+#### 安装依赖
+
+SDL2 SDL2_Image
+
+在ubuntu上安装依赖:
+
+`apt install libsdl2-dev libsdl2-image-dev`
+
 #### 编译
 
 `make`
@@ -106,14 +114,6 @@ EOF
 ## 注意事项
 
 一般情况下, 取色尽量点击颜色块的中间保证取色正确.
-
-## 依赖
-
-SDL2 SDL2_Image
-
-在ubuntu上安装依赖:
-
-`apt install libsdl2-dev libsdl2-image-dev`
 
 ## English
 Please translate this file.
